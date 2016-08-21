@@ -20,7 +20,12 @@ public class Polish {
             try {
                 double tmp = Double.parseDouble(StringToPolishArray.get(i));
             } catch (NumberFormatException e) {
-                decision(StringToPolishArray, i);
+                try {
+                    decision(StringToPolishArray, i);
+                } catch (Exception e1) {
+                    System.out.println("В выражении присутствует буквенный символ");
+                    System.exit(0);
+                }
                 i -= 2;
             }
         }
