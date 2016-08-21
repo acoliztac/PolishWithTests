@@ -7,11 +7,18 @@ import static org.junit.Assert.assertEquals;
  */
 public class PolishTest {
     @Test
-    public void Test(){
-        Polish pl = new Polish("5-2/3");
-        Double d = Double.valueOf(5 - 2.0/3);
+    public void TestDevideByZero(){
+        Polish pl = new Polish("1/0");
+        Double d = Double.valueOf(1.0/0);
         String ideal = String.format("%.3f", d);
-
         assertEquals(ideal, pl.getAnswer());
     }
+    @Test
+    public void Test(){
+        Polish pl = new Polish("1/0");
+        Double d = Double.valueOf(1.0/0);
+        String ideal = String.format("%.3f", d);
+        assertEquals(ideal, pl.getAnswer());
+    }
+
 }
