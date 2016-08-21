@@ -30,6 +30,9 @@ public class Polish {
     }
 
     private static void decision(ArrayList<String> polish, int i) {
+        if (polish.size() < 2){
+            return;
+        }
         double first = Double.parseDouble(polish.get(i - 2));
         double second = Double.parseDouble(polish.get(i - 1));
         if (polish.get(i).equals("+")){
@@ -65,6 +68,7 @@ public class Polish {
         ArrayList<String> result = new ArrayList<String>();
         ArrayList<Character> symbols = new ArrayList<Character>();
         ArrayList<Integer> importance = new ArrayList<Integer>();
+        Character[] chars = {'+', '-', '*', '/', '^', '(', ')'};
 
         for (int i = 0; i < text.length(); i++) {
             StringBuilder sb = new StringBuilder();
@@ -92,11 +96,37 @@ public class Polish {
             initializeResult(result, symbols, importance);
 
         }
+
+        lastNumberControl(result);
+
+        lastBraceletsControl(importance);
+
         for (int i = symbols.size() - 1; i >= 0; i--) {
             result.add(String.valueOf(symbols.get(i)));
         }
 
         return result;
+    }
+
+    private static void lastNumberControl(ArrayList<String> result) {
+        if (result.size() == 0){
+            System.out.println("Вы не ввели ни одного числа.");
+            System.exit(0);
+        }
+    }
+
+    private static void lastBraceletsControl(ArrayList<Integer> importance) {
+        int countBracelets = 0;
+        for (int i : importance){
+            if (i == 4)
+                countBracelets++;
+            if (i == 5)
+                countBracelets--;
+        }
+        if (countBracelets != 0){
+            System.out.println("Переизбыток " + (countBracelets > 0 ? "открывающих" : "закрывающих") + " скобок.");
+            System.exit(0);
+        }
     }
 
     private static void initializeResult(ArrayList<String> result, ArrayList<Character> symbols, ArrayList<Integer> importance) {
