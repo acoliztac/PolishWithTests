@@ -8,6 +8,8 @@ import static java.lang.Math.pow;
  * Created by Никита on 21.08.2016.
  */
 public class Polish {
+    public String expression;
+    public String polishExpression;
     public String answer;
 
     public String getAnswer() {
@@ -29,9 +31,12 @@ public class Polish {
                 i -= 2;
             }
         }
-        String fResult = String.format("%.3f", Double.parseDouble(StringToPolishArray.get(0)));
+        String fResult = StringToPolishArray.get(0);
+
         answer = fResult;
-        System.out.println("\tРезультат = " + fResult);
+
+//        System.out.println("\tРезультат = " + fResult);
+
     }
 
     private static void decision(ArrayList<String> polish, int i) {
@@ -58,14 +63,16 @@ public class Polish {
     private static ArrayList<String> converterToPolish(String text) {
         text = text.replaceAll(" ", "");
         text = text.replaceAll(",", ".");
-        System.out.println(text + ": форматированное исходное выражение");
+
+//        System.out.println(text + ": форматированное исходное выражение");
 
         ArrayList<String> result = mainInitialization(text);
 
-        for (String s : result){
-            System.out.print(s + " ");
-        }
-        System.out.println(": форматированная польская запись");
+//        for (String s : result){
+//            System.out.print(s + " ");
+//        }
+//        System.out.println(": форматированная польская запись");
+
         return result;
     }
 
